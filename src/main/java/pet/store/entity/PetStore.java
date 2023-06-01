@@ -1,4 +1,4 @@
-package entity;
+package pet.store.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@Embeddable
 public class PetStore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

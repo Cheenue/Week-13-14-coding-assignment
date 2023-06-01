@@ -1,9 +1,6 @@
-package entity;
+package pet.store.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -13,8 +10,10 @@ import java.util.Set;
 
 @Entity
 @Data
+@Embeddable
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerId;
     private String customerFirstName;
     private String customerLastName;
