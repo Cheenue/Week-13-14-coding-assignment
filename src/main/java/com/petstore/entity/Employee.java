@@ -1,4 +1,4 @@
-package entity;
+package com.petstore.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,8 +9,8 @@ import lombok.ToString;
 @Data
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
-    private Long petStoreId;
     private String employeeFirstName;
     private String employeeLastName;
     private String employeePhone;
@@ -20,5 +20,6 @@ public class Employee {
     @ToString.Exclude
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "pet_store_id")
-    PetStore petStore = new PetStore();
+    private PetStore petStore;
+
 }

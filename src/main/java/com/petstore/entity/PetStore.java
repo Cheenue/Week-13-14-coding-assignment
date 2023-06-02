@@ -1,4 +1,4 @@
-package pet.store.entity;
+package com.petstore.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,7 +10,6 @@ import java.util.Set;
 
 @Entity
 @Data
-@Embeddable
 public class PetStore {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +21,19 @@ public class PetStore {
     private String petStoreZip;
     private String petStorePhone;
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
+
     @ManyToMany (cascade = CascadeType.PERSIST)
     @JoinTable(name = "pet_store_customer",
             joinColumns = @JoinColumn(name = "pet_store_id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id"))
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private Set<Customer> customers = new HashSet<>();
 
+
     @OneToMany(mappedBy = "petStore", cascade = CascadeType.ALL, orphanRemoval = true)
-    Set<Employee> employees = new HashSet<>();
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Employee> employees = new HashSet<>();
 }
