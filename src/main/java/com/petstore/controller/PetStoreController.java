@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/pet_store")
 @Slf4j
 public class PetStoreController {
-    private final PetStoreService petStoreService;
+
+    @Autowired
+    PetStoreService petStoreService;
 
     @Autowired
     public PetStoreController(PetStoreService petStoreService) {
