@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class PetStoreData {
     private Long petStoreId;
+    private PetStoreData petStoreData;
     private String petStoreName;
     private String petStoreAddress;
     private String petStoreCity;

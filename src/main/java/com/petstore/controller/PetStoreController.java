@@ -20,19 +20,11 @@ public class PetStoreController {
         this.petStoreService = petStoreService;
     }
 
-    @PostMapping
+    @PostMapping("/pet_store")
     @ResponseStatus(HttpStatus.CREATED)
     public PetStoreData createPetStore(@RequestBody PetStoreData petStoreData) {
         log.info("Received a POST request to create a pet store: {}", petStoreData);
         return petStoreService.savePetStore(petStoreData);
     }
 
-    @PutMapping("/pet_store/{storeId}")
-    public PetStoreData updatePetStore(@PathVariable Long storeId, @RequestBody PetStoreData petStoreData) {
-        log.info("Updating pet store with ID: {}", storeId);
-
-        petStoreData.setPetStoreId(storeId);
-
-        return petStoreService.savePetStore(petStoreData);
-    }
 }

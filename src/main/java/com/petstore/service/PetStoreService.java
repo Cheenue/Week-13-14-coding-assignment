@@ -42,6 +42,4 @@ public class PetStoreService {
         petStore.setPetStoreZip(petStoreData.getPetStoreZip());
         petStore.setPetStorePhone(petStoreData.getPetStorePhone());
     }
-
-
 }
