@@ -26,4 +26,13 @@ public class PetStoreController {
         log.info("Received a POST request to create a pet store: {}", petStoreData);
         return petStoreService.savePetStore(petStoreData);
     }
+
+    @PutMapping("/pet_store/{storeId}")
+    public PetStoreData updatePetStore(@PathVariable Long storeId, @RequestBody PetStoreData petStoreData) {
+        log.info("Updating pet store with ID: {}", storeId);
+
+        petStoreData.setPetStoreId(storeId);
+
+        return petStoreService.savePetStore(petStoreData);
+    }
 }
