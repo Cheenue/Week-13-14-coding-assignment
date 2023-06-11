@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Data //creates getters and setters for us
 @NoArgsConstructor
 public class PetStoreData {
     private Long petStoreId;

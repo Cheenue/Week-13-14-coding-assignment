@@ -21,7 +21,6 @@ public class PetStore {
     private String petStoreZip;
     private String petStorePhone;
 
-
     @ManyToMany (cascade = CascadeType.PERSIST)
     @JoinTable(name = "pet_store_customer",
             joinColumns = @JoinColumn(name = "pet_store_id"),

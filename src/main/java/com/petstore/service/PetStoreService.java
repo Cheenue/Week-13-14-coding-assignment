@@ -7,16 +7,18 @@ import com.petstore.entity.PetStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class PetStoreService {
     @Autowired
     PetStoreDao petStoreDao;
 
-    public PetStoreData savePetStore(PetStoreData petStoreData) {
+    public PetStore savePetStore(PetStore petStore) {
 
-        findOrCreatePetStore(petStoreData.getPetStoreId());
-
+        findOrCreatePetStore(petStore.getPetStoreId());
+        petStoreDao.save(petStore);
         return null;
     }
 
@@ -29,9 +31,10 @@ public class PetStoreService {
         }
     }
 
-    private PetStore findPetStoreById(Long petStoreId) {
-        petStoreDao.findById(petStoreId);//just calling the method
-        return null;
+    public Optional<PetStore> findPetStoreById(Long petStoreId) {
+        Optional<PetStore> petStore = petStoreDao.findById(petStoreId);//just calling the method
+
+        return petStore;
     }
 
     private void copyPetStoreFields(PetStoreData petStoreData, PetStore petStore){
