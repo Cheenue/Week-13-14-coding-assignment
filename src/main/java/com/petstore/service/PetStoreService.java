@@ -75,11 +75,6 @@ public class PetStoreService {
 
         if (optionalEmployee.isPresent()) {
             Employee employee = optionalEmployee.get();
-            //TODO check if need code below
-//            if (!employee.getPetStore().getPetStoreId().equals(petStoreId)) {
-//                throw new IllegalArgumentException("Employee with ID: " + employeeId +
-//                        " does not belong to the pet store with ID: " + petStoreId);
-//            }
             return employee;
         } else {
             throw new NoSuchElementException("Employee not found with ID: " + employeeId);
