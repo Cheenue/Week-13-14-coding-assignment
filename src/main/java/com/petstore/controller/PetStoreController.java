@@ -1,5 +1,7 @@
 package com.petstore.controller;
 
+import com.petstore.controller.model.PetStoreData;
+import com.petstore.controller.model.PetStoreEmployee;
 import com.petstore.dao.PetStoreDao;
 import com.petstore.entity.PetStore;
 import com.petstore.service.PetStoreService;
@@ -8,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -59,4 +64,28 @@ public class PetStoreController {
         return petStoreService.findPetStoreById(id);
     }
 
+    @PostMapping ("/pet_store/{petStoreId}/employee")
+    @ResponseStatus (HttpStatus.CREATED)
+    public PetStoreEmployee addEmployee(@PathVariable Long petStoreId, @RequestBody PetStoreEmployee employee) {
+        log.info("Received a POST request to add an employee to the pet store with ID: {}", petStoreId);
+        return petStoreService.saveEmployee(petStoreId, employee);
+    }
+
+    @GetMapping("/pet_store")
+    public List<PetStoreData> getAllPetStores() {
+        return petStoreService.retrieveAllPetStores();
+    }
+    @GetMapping("/pet_store/{petStoreId}")
+    public PetStoreData getPetStoreById(@PathVariable Long petStoreId) {
+        return petStoreService.retrievePetStoreById(petStoreId);
+    }
+
+    @DeleteMapping("/pet_store/{petStoreId}")
+    public Map<String, String> deletePetStoreById(@PathVariable Long petStoreId) {
+        log.info("Deleting pet store with ID: {}", petStoreId);
+        petStoreService.deletePetStoreById(petStoreId);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Pet store deleted successfully");
+        return response;
+    }
 }
